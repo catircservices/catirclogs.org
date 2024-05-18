@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ssh root@catircservices.org "nix-channel --update && nixos-rebuild boot && reboot"
+ssh root@catirclogs.org "nix-channel --update && nixos-rebuild boot && reboot"
