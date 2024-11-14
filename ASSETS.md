@@ -2,11 +2,11 @@
 
 The following information assets are required to run https://catirclogs.org:
 
-- Source control repository `whitequark/catirclogs.org`
+- Source control repository `catircservices/catirclogs.org`
   - Provider: [GitHub](https://github.com)
   - Owner: Catherine
   - Operators: Catherine
-  - Link: https://github.com/whitequark/catirclogs.org
+  - Link: https://github.com/catircservices/catirclogs.org
 - Matrix channel `#admin:catircservices.org` (shared with https://catircservices.org)
   - Provider: [Matrix.org](https://matrix.org)
   - Owners/operators: Catherine
