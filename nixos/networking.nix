@@ -38,5 +38,13 @@ in
     defaultGateway6 = { address = siteConfig.net.ipv6.gateway; interface = "eth0"; };
     defaultGateway = siteConfig.net.ipv4.gateway;
     nameservers = siteConfig.dns.servers;
+
+    # NAT for containers
+    nat = {
+      enable = true;
+
+      internalInterfaces = [ "ve-+" ];
+      externalInterface = "eth0";
+    };
   };
 }

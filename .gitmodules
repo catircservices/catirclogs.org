@@ -1,3 +1,0 @@
-[submodule "nixos/pkgs/irclogger/src"]
-	path = nixos/pkgs/irclogger/src
-	url = git@github.com:whitequark/irclogger.git

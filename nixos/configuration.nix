@@ -1,7 +1,16 @@
-{ pkgs, lib, config, ... }:
+{ config, lib, pkgs, ... }:
 let
   siteConfig = lib.importTOML (./. + "/site/config.toml");
   siteSecrets = lib.importTOML (./. + "/site/secrets.toml");
+
+  # Only merge secrets for hosts that we want to also deploy.
+  hosts = lib.mapAttrs (host: data:
+    if siteSecrets.irc ? ${host} then
+      lib.recursiveUpdate data siteSecrets.irc.${host}
+    else
+      data) siteConfig.irc;
+
+  domain = siteConfig.serverName;
 in {
   system.stateVersion = "23.05";
 
@@ -9,6 +18,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    (import ./containers.nix { inherit lib pkgs domain hosts; })
   ];
 
   nix.gc = {
@@ -32,7 +42,7 @@ in {
     acceptTerms = true;
     defaults = { email = siteConfig.web.acmeEmail; };
   };
-  users.users.nginx.extraGroups = ["acme"];
+  users.users.nginx.extraGroups = [ "acme" ];
 
   # Web reverse proxy server
   services.nginx = {
@@ -40,7 +50,7 @@ in {
     recommendedProxySettings = true;
 
     virtualHosts = {
-      "${siteConfig.serverName}" = {
+      "${domain}" = {
         forceSSL = true;
         enableACME = true;
 
@@ -61,16 +71,16 @@ in {
   };
 
   # Backup
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["tarsnap"];
-  services.tarsnap = {
-    enable = siteConfig.backup.enable;
-    keyfile = "${pkgs.writeText "tarsnap.key" siteSecrets.tarsnap.keyfile}";
-    archives."${siteConfig.serverName}" = {
-      directories = [
+  services.restic.backups = lib.mkIf siteConfig.backup.restic {
+    all = {
+      repository = siteSecrets.restic.repository;
+      passwordFile = "${pkgs.writeText "password" siteSecrets.restic.password}";
+      environmentFile = "${pkgs.writeText "environment" siteSecrets.restic.environment}";
+      initialize = true;
+      paths = [
         "/etc/nixos"
         "/var/backup"
       ];
-      excludes = [];
     };
   };
 }

@@ -14,7 +14,189 @@ servers = ["2620:fe::fe", "9.9.9.9"]
 [ssh]
 pubkeys = [
   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3Cn89kCKoRHtTt9ailswSbnO/PeqA70HUcbhzL3mml whitequark",
+  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAJXxAPExZHrVUyZ+5Ed/5U4NxV4M//uu5gLQJ17WSs bin",
 ]
+
+[irc.libera]
+server = "irc.libera.chat"
+port = 6697
+ssl = true
+username = "whitelogger"
+realname = "whitequark's logger bot"
+nickname = "_whitelogger"
+channels = [
+  "#nmigen",
+  "#glasgow",
+  "##openfpga",
+  "#prjbureau",
+  "#jruby",
+  "#scopehal",
+  "##yamahasynths",
+  "#ocaml",
+  "#river",
+  "#titandev",
+  "#discferret",
+  "##stm32-rs",
+  "#rust-embedded",
+  "#riscv",
+  "#foot",
+  "#osdev",
+  "#armbian",
+  "#litex",
+  "#proghq",
+  "#yosys",
+  "#maemo-leste",
+  "#libreelec",
+  "#sandstorm",
+  "#kisslinux",
+  "#picolisp",
+  "#linux-exynos",
+  "#commonlisp",
+  "#pypy",
+  "#evennia",
+  "#linux-rockchip",
+  "#u-boot",
+  "#tegra",
+  "#openocd",
+  "#linux-ti",
+  "#beagle",
+  "#yocto",
+  "#armlinux",
+  "#hpy",
+  "#ruby",
+  "#crystal-lang",
+  "#linux-amlogic",
+  "#fedora-riscv",
+  "#mew",
+  "#buildbot",
+  "#Speedsaver",
+  "#mlpack",
+  "#crux",
+  "#crux-devel",
+  "#crux-arm",
+  "#openscad",
+  "#racket",
+  "#amaranth-lang",
+  "#solvespace",
+  "#armbian-allwinner",
+  "#armbian-rockchip",
+  "#armbian-amlogic",
+  "#armbian-broadcom",
+  "#openFPGALoader",
+  "#moin",
+  "#zeppe-lin",
+  "#ffmpeg",
+  "#ffmpeg-devel",
+  "#mailx",
+  "##raspberrypi-internals",
+  "#hts",
+  "#crux-social",
+  "#radxa",
+  "#fedilinks",
+  "#linux-mediatek",
+  "#numbat",
+  "#openvswitch",
+  "##bash-crimes",
+  "#prjcombine",
+  "#http.sh",
+  "#prjunnamed",
+  "#crux-musl",
+]
+hidden_channels = [
+  "#proghq",
+]
+
+[irc.libera.meta]
+watchdogTimeout = 300 # 5m
+
+[irc.oftc]
+server = "irc.oftc.net"
+port = 6697
+ssl = true
+username = "whitelogger"
+realname = "whitequark's logger bot"
+nickname = "_whitelogger"
+channels = [
+ "#asahi",
+ "#asahi-alt",
+ "#asahi-dev",
+ "#asahi-re",
+ "#asahi-gpu",
+ "#haiku",
+ "#haiku-3rdparty",
+ "#panfrost",
+ "##panfrost-offtopic",
+ "#linux-sunxi",
+ "#dri-devel",
+ "#freedesktop",
+ "#wayland",
+ "#lima",
+ "#cedrus",
+ "#etnaviv",
+ "#zink",
+ "#openwrt-devel",
+ "#yab",
+ "#debian-malaysia",
+ "#aarch64-laptops",
+ "#linux-msm",
+ "#io_uring",
+ "#linux-cros-arm",
+ "#ubuntu-asahi",
+ "#msm8937-mainline",
+ "#sm8250-mainline",
+]
+
+[irc.oftc.meta]
+watchdogTimeout = 1800 # 30m
+
+[irc.esper]
+server = "irc.esper.net"
+username = "whitelogger"
+realname = "whitequark's logger bot"
+nickname = "_whitelogger"
+channels = [
+  "#!/bin/sh",
+  "#bottorture",
+  "#ckan",
+  "#Kopernicus",
+  "#kspacademia",
+  "#KSPD&D",
+  "#kspmodders",
+  "#kspmodding",
+  "#KSPOfficial",
+  "#kspunofficial",
+  "#principia",
+  "#qboid",
+  "#RO",
+  "#RVEDev",
+  "#spacedock",
+]
+
+[irc.esper.meta]
+watchdogTimeout = 28800 # 8h
+
+[irc.freenode]
+server = "chat.freenode.net"
+port = 6697
+ssl = true
+username = "whitelogger"
+realname = "whitequark's logger bot"
+nickname = "_whitelogger"
+channels = []
+hidden_channels = [
+ "##fix_your_connection",
+ "#AUTOMATIOTT",
+ "#proghq",
+ "#armbian",
+ "#asahi",
+ "#asahi-dev",
+ "#asahi-re",
+ "#asahi-gpu",
+ "#etnaviv",
+]
+
+[irc.freenode.meta]
+enableLogger = false
 
 [web]
 acmeEmail = "admin@catirclogs.org"
@@ -25,12 +207,24 @@ banner = """
 <p>Please email <a href="mailto:admin@catirclogs.org">admin@catirclogs.org</a> if you have an inquiry related to this server or its services. The administrators of this server are <a href="mailto:whitequark@whitequark.org">Catherine</a>.</p>
 <p>This server hosts the following services:</p>
 <dl>
-  <dt>None at the moment</dt>
+  <dt><a href="https://libera.catirclogs.org">Libera Chat IRC logs</a></dt>
   <dd>
-    This server is in the process of being deployed.
+    Select channels on the <a href="https://libera.chat/">Libera Chat</a> IRC network are logged and the archive is available for browsing. This service was previously available at <a href="https://libera.irclog.whitequark.org">libera.irclog.whitequark.org</a>.
+  </dd>
+  <dt><a href="https://oftc.catirclogs.org">OFTC IRC logs</a></dt>
+  <dd>
+    Select channels on the <a href="https://oftc.net/">OFTC</a> IRC network are logged and the archive is available for browsing. This service was previously available at <a href="https://oftc.irclog.whitequark.org">oftc.irclog.whitequark.org</a>.
+  </dd>
+  <dt><a href="https://esper.catirclogs.org">EsperNet IRC logs</a></dt>
+  <dd>
+    Select channels on the <a href="https://esper.net/">EsperNet</a> IRC network are logged and the archive is available for browsing. This service was previously available at <a href="https://esper.irclog.whitequark.org">esper.irclog.whitequark.org</a>.
+  </dd>
+  <dt><a href="https://freenode.catirclogs.org">Freenode IRC logs</a> (archived)</dt>
+  <dd>
+    The <a href="https://en.wikipedia.org/wiki/Freenode">Freenode</a> IRC network is no longer logged, but archived logs up to May 2021 will be available indefinitely. This service was previously available at <a href="irclog.whitequark.org">irclog.whitequark.org</a> and <a href="https://freenode.irclog.whitequark.org">freenode.irclog.whitequark.org</a>.
   </dd>
 </dl>
 """
 
 [backup]
-enable = true
+restic = true
