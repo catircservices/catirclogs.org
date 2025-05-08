@@ -12,8 +12,6 @@ let
 
   domain = siteConfig.serverName;
 in {
-  system.stateVersion = "23.05";
-
   # System
   imports = [
     ./hardware-configuration.nix
@@ -83,4 +81,6 @@ in {
       ];
     };
   };
+
+  system.stateVersion = "23.05";
 }
