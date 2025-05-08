@@ -59,7 +59,14 @@ in {
           return 200 \"${builtins.replaceStrings ["\n" "\""] ["\\n" "\\\""] siteConfig.web.banner}\";
         ";
       };
-    };
+    } // lib.mapAttrs (domain: target: {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/".extraConfig = "
+        return 301 ${target}\$request_uri;
+      ";
+    }) siteConfig.web.redirects;
   };
 
   # Firewall

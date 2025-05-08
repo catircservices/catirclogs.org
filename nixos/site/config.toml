@@ -226,5 +226,13 @@ banner = """
 </dl>
 """
 
+[web.redirects]
+"libera.irclog.whitequark.org" = "https://libera.catirclogs.org"
+"oftc.irclog.whitequark.org" = "https://oftc.catirclogs.org"
+"esper.irclog.whitequark.org" = "https://esper.catirclogs.org"
+"freenode.irclog.whitequark.org" = "https://freenode.catirclogs.org"
+"irclog.whitequark.org" = "https://freenode.catirclogs.org"
+"logs.jruby.org" = "https://freenode.catirclogs.org/jruby"
+
 [backup]
 restic = true
