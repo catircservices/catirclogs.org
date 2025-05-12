@@ -12,8 +12,8 @@ let
   src = fetchFromGitHub {
     owner = "whitequark";
     repo = pname;
-    rev = "3ac04423b445cff68e6c02c82bc85c011b152bc3";
-    hash = "sha256-bmlJBw5zgNBhSbzDOUCad97QwfrcXSkj7bM/IP2eoaQ=";
+    rev = "002dec39c6a7dfde9d598402cef6f30717949148";
+    hash = "sha256-jMs/Cf8y3+DgLa2wxVIwxZHi+utamBM6KWvEB/qrT3s=";
   };
   env = bundlerEnv {
     name = "${pname}-gems";
