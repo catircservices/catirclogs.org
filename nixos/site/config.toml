@@ -101,6 +101,7 @@ channels = [
   "#http.sh",
   "#prjunnamed",
   "#crux-musl",
+  "#opencrux",
 ]
 hidden_channels = [
   "#proghq",
