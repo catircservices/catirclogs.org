@@ -102,6 +102,7 @@ channels = [
   "#prjunnamed",
   "#crux-musl",
   "#opencrux",
+  "#wayback",
 ]
 hidden_channels = [
   "#proghq",
