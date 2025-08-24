@@ -103,6 +103,8 @@ channels = [
   "#crux-musl",
   "#opencrux",
   "#wayback",
+  "#phonenet",
+  "#uwutel",
 ]
 hidden_channels = [
   "#proghq",
