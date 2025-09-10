@@ -365,6 +365,11 @@ in
         host    all             all             127.0.0.1/32            trust
         host    all             all             ::1/128                 trust
       '';
+
+      settings = {
+        max_worker_processes = 32;
+        max_parallel_workers = 32;
+      };
     };
 
     services.postgresqlBackup = mkIf cfg.postgres.backup {
