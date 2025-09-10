@@ -85,7 +85,7 @@ let
               forceSSL = true;
               enableACME = true;
 
-              root = "${irclogger}/public";
+              root = "${irclogger}/opt/irclogger/public";
 
               locations = {
                 "/".extraConfig = ''
