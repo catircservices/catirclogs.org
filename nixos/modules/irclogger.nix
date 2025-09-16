@@ -294,6 +294,7 @@ in
         requires = after;
 
         environment = {
+          APP_ENV = "production";
           IRCLOGGER_CONFIG = "${configFile}";
         };
 
