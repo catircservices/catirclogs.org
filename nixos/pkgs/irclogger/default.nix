@@ -1,5 +1,6 @@
 { bundlerEnv
 , fetchFromGitHub
+, gcc13Stdenv
 , lib
 , makeWrapper
 , ruby
@@ -17,10 +18,12 @@ let
   };
   env = bundlerEnv {
     name = "${pname}-gems";
-    inherit ruby;
     gemfile = "${src}/Gemfile";
     lockfile = "${src}/Gemfile.lock";
     gemset = "${src}/gemset.nix";
+
+    # Overriding ruby stdenv propagates to gems. `mysql2` has issues building with newer compiler versions.
+    ruby = (ruby.override { stdenv = gcc13Stdenv; });
   };
 in
 stdenvNoCC.mkDerivation {

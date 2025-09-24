@@ -1,4 +1,4 @@
 #!/bin/sh
 
 rsync -vrt --delete --delete-excluded nixos/ root@catirclogs.org:/etc/nixos
-ssh root@catirclogs.org "nixos-rebuild switch --show-trace"
+ssh root@catirclogs.org "nixos-rebuild switch -f /etc/nixos/pivot.nix --fast"

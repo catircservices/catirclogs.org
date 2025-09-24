@@ -19,9 +19,21 @@ in {
     (import ./containers.nix { inherit lib pkgs domain hosts; })
   ];
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+
+    settings = {
+      experimental-features = "flakes nix-command";
+    };
+  };
+
+  nixpkgs = {
+    flake.source = (import ./npins).nixos;
+
+    hostPlatform = lib.mkDefault "aarch64-linux";
   };
 
   boot.tmp.cleanOnBoot = true;
