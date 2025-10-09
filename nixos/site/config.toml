@@ -105,6 +105,7 @@ channels = [
   "#wayback",
   "#phonenet",
   "#uwutel",
+  "#spacemit",
 ]
 hidden_channels = [
   "#proghq",
