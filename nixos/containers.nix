@@ -1,4 +1,4 @@
-{ lib, pkgs, domain, hosts, ... }:
+{ config, lib, pkgs, domain, hosts, ... }:
 
 let
   irclogger = pkgs.callPackage ./pkgs/irclogger { ruby = pkgs.ruby_3_1; };
@@ -121,7 +121,7 @@ let
                   proxy_send_timeout 180s;
                   proxy_read_timeout 180s;
                   if (!-f $request_filename) {
-                    proxy_pass http://${localAddress}:${toString port};
+                    proxy_pass http://unix:${config.services.anubis.instances.${name}.settings.BIND};
                   }
                 '';
 
@@ -130,6 +130,15 @@ let
                   return 303 "$scheme://$host/$1/";
                 '';
               };
+            };
+          };
+        };
+
+        # Configure anubis.
+        services.anubis = {
+          instances.${name} = {
+            settings = {
+              TARGET = "http://${localAddress}:${toString port}";
             };
           };
         };

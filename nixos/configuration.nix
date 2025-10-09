@@ -16,7 +16,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    (import ./containers.nix { inherit lib pkgs domain hosts; })
+    (import ./containers.nix { inherit config lib pkgs domain hosts; })
   ];
 
   nix = {
@@ -52,7 +52,6 @@ in {
     acceptTerms = true;
     defaults = { email = siteConfig.web.acmeEmail; };
   };
-  users.users.nginx.extraGroups = [ "acme" ];
 
   # Web reverse proxy server
   services.nginx = {
@@ -79,6 +78,19 @@ in {
         return 301 ${target}\$request_uri;
       ";
     }) siteConfig.web.redirects;
+  };
+
+  users.users.nginx.extraGroups = [
+    config.users.groups.acme.name
+    config.users.groups.anubis.name
+  ];
+
+  # Anubis global configuration
+  services.anubis = {
+    defaultOptions.settings = {
+      SERVE_ROBOTS_TXT = true;
+      DIFFICULTY = 8;
+    };
   };
 
   # Firewall
