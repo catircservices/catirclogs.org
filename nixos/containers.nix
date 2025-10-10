@@ -129,6 +129,18 @@ let
                   add_header Set-Cookie "access_key=$2; Max-Age=315360000; Path=/; HttpOnly";
                   return 303 "$scheme://$host/$1/";
                 '';
+
+                "~* \\.(?:css|js)$".extraConfig = ''
+                  expires 7d;
+                  access_log off;
+                  add_header Cache-Control "max-age=604800, public";
+
+                  # Bypass Anubis for assets.
+                  proxy_pass http://${localAddress}:${toString port};
+                  proxy_cache_use_stale updating;
+                  proxy_cache_background_update on;
+                  proxy_cache_lock on;
+                '';
               };
             };
           };
