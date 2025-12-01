@@ -1,7 +1,15 @@
 { config, lib, pkgs, domain, hosts, ... }:
 
 let
-  irclogger = pkgs.callPackage ./pkgs/irclogger { ruby = pkgs.ruby_3_1; };
+  # Ruby 3.1 was removed in 25.11, fetch a 25.05 tarball for now.
+  pkgs' = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/tarball/9a7b80b6f82a71ea04270d7ba11b48855681c4b0";
+    sha256 = "sha256:1ahp8ybsxay6q20gv5dhwj6pbqcljh4y51np462lzqryjl8gwqpk";
+  }) {
+    inherit (pkgs.stdenv.hostPlatform) system;
+  };
+
+  irclogger = pkgs.callPackage ./pkgs/irclogger { ruby = pkgs'.ruby_3_1; };
 
   mkConfig = { idx, cfg }: name: value:
     let
@@ -151,10 +159,14 @@ let
           instances.${name} = {
             settings = {
               TARGET = "http://${localAddress}:${toString port}";
+
+              # TODO(bin): remove once NixOS/nixpkgs#457055 is merged.
+              BIND = "/run/anubis/anubis-${name}/anubis-${name}.sock";
+              METRICS_BIND = "/run/anubis/anubis-${name}/anubis-${name}-metrics.sock";
             };
           };
         };
       };
     };
 in
-  (lib.foldlAttrs mkConfig ({ idx = 0; cfg = { }; }) hosts).cfg
+  (lib.foldlAttrs mkConfig { idx = 0; cfg = { }; } hosts).cfg

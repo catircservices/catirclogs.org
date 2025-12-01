@@ -25,6 +25,11 @@ in {
       options = "--delete-older-than 30d";
     };
 
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+
     settings = {
       experimental-features = "flakes nix-command";
     };
@@ -89,7 +94,7 @@ in {
   services.anubis = {
     defaultOptions.settings = {
       SERVE_ROBOTS_TXT = true;
-      DIFFICULTY = 8;
+      DIFFICULTY = 4;
     };
   };
 
