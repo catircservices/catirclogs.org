@@ -3,8 +3,8 @@
     "nixos": {
       "type": "Channel",
       "name": "nixos-25.11",
-      "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.612.d542db745310/nixexprs.tar.xz",
-      "hash": "1cgniq3qrphj28jjxn3bzbrvi7x6b4585xpb2svvvjc7v5caxn1j"
+      "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.1056.d9bc5c7dceb3/nixexprs.tar.xz",
+      "hash": "148dkksh8z1amk7jvp0a79k19aydxbzvhbhicbs41wwhkqk9yb57"
     }
   },
   "version": 5
