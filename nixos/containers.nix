@@ -14,7 +14,9 @@ let
   mkConfig = { idx, cfg }: name: value:
     let
       hostAddress = "172.16.0.${toString (idx * 2)}";
+      hostAddress6 = "fc00::${toString (idx * 2)}";
       localAddress = "172.16.0.${toString (idx * 2 + 1)}";
+      localAddress6 = "fc00::${toString (idx * 2 + 1)}";
 
       subdomain = "${name}.${domain}";
       port = 4000;
@@ -39,7 +41,7 @@ let
             autoStart = true;
             privateNetwork = true;
 
-            inherit hostAddress localAddress;
+            inherit hostAddress hostAddress6 localAddress localAddress6;
 
             bindMounts = {
               "/var/backup" = {
