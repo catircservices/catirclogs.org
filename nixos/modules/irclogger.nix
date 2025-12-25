@@ -95,6 +95,12 @@ in
           description = "Password (if applicable) for the username.";
         };
 
+        sasl = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Whether to authenticate to the IRC server via SASL.";
+        };
+
         realname = mkOption {
           type = types.str;
           default = "whitequark's logger bot";

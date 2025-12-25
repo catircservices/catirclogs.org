@@ -18,12 +18,13 @@ pubkeys = [
 ]
 
 [irc.libera]
-server = "irc.libera.chat"
+server = "irc.ipv6.libera.chat"
 port = 6697
 ssl = true
+sasl = true
 username = "whitelogger"
-realname = "whitequark's logger bot"
 nickname = "_whitelogger"
+realname = "whitequark's logger bot"
 channels = [
   "#nmigen",
   "#glasgow",

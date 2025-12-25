@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "whitequark";
     repo = pname;
-    rev = "2078268d4dd8b6c2759cae4cb70b7e203f2d2d8b";
-    hash = "sha256-1U3efaY4imed8GtU69bTcRVHzvvl1/49YErRzoUipTg=";
+    rev = "e1d01e00302e55445f5d3fbc5296d8292caa26cf";
+    hash = "sha256-lKRF9mtjVn1AbbWVzvc9a19/bz/9l6lIenznbtVNFDw=";
   };
   env = bundlerEnv {
     name = "${pname}-gems";
